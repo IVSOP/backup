@@ -11,6 +11,6 @@ ARCHIVE_NAME=$1
 CUR_PATH=$(pwd)
 cd $HOME
 
-borg extract borg::$ARCHIVE_NAME
+borg extract --progress $CUR_PATH/borg::$ARCHIVE_NAME
 
 cd $CUR_PATH
