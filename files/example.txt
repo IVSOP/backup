@@ -1,0 +1,12 @@
+// this is a comment
+# this is a comment too
+
+# empty lines
+
+# backup.sh will cd into the home directory. this is personal preference, and means the paths are relative to ~
+# completion with * should work but I don't use it
+
+.local/share/openttd/
+.local/share/supertux2/
+Desktop/SomeFolder/
+Downloads/video.mp4
