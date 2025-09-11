@@ -7,7 +7,7 @@ then
 fi
 
 cleanup() {
-    rm -f temp.txt
+    rm -f /tmp/temp_backup.txt
     exit 1
 }
 
@@ -35,7 +35,6 @@ function get_filenames() {
 
 
 # iterate through all .txt files except example.txt and concat the contents into temp.txt (bash removes newlines in $(...), wtf)
-# remove the comments etc at this stage, to reduce the file size. probably insignificant either way
 rm -f /tmp/temp_backup.txt
 for file in files/*.txt
 do
@@ -53,14 +52,7 @@ cd $HOME
 # some other option might solve this but I really don't care
 # TODO: instead of cat /tmp/temp_backup.txt, need to recurse into ALL paths if the string is a folder
 
-while IFS= read -r path; do
-  if [ -f "$path" ]; then
-    echo "$path"
-  elif [ -d "$path" ]; then
-    find "$path" -type f
-  fi
-done < /tmp/temp_backup.txt | \
-borg create -v --stats --progress --compression zstd,10 --paths-from-stdin $SCRIPT_PATH/borg::$ARCHIVE_NAME 
+restic --repo repo/ --files-from /tmp/temp_backup.txt --verbose backup
 
 cd $SCRIPT_PATH
 rm -f /tmp/temp_backup.txt

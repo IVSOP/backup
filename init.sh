@@ -1,3 +1,3 @@
 #!/bin/bash
 
-borg init -e repokey borg
+restic init --repo repo/

@@ -2,3 +2,4 @@ borg/
 cleanup.sh
 temp.txt
 mount/
+repo/

@@ -11,6 +11,7 @@ ARCHIVE_NAME=$1
 CUR_PATH=$(pwd)
 cd $HOME
 
-borg extract --progress $CUR_PATH/borg::$ARCHIVE_NAME
+restic --repo $CUR_PATH/repo restore latest
+#--target .
 
 cd $CUR_PATH
