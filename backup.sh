@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if [ "$#" -lt 1 ]
-then
-    echo "Usage: ./backup.sh <archive name>"
-    exit 1
-fi
-
 cleanup() {
     rm -f /tmp/temp_backup.txt
     exit 1
@@ -13,9 +7,6 @@ cleanup() {
 
 trap cleanup ERR
 trap cleanup SIGINT
-
-ARCHIVE_NAME=$1
-
 
 # function to ignore empty lines and comments and expand wildcards. I have no idea how this works
 function get_filenames() {
@@ -52,7 +43,7 @@ cd $HOME
 # some other option might solve this but I really don't care
 # TODO: instead of cat /tmp/temp_backup.txt, need to recurse into ALL paths if the string is a folder
 
-restic --repo repo/ --files-from /tmp/temp_backup.txt --verbose backup
+restic --compression max --repo $SCRIPT_PATH/repo/ --files-from /tmp/temp_backup.txt --verbose backup
 
 cd $SCRIPT_PATH
 rm -f /tmp/temp_backup.txt
