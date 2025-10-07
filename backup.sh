@@ -24,7 +24,6 @@ function get_filenames() {
     done # | sed 's:/*$::' # remove trailing slashes
 }
 
-
 # iterate through all .txt files except example.txt and concat the contents into temp.txt (bash removes newlines in $(...), wtf)
 rm -f /tmp/temp_backup.txt
 for file in files/*.txt
@@ -38,10 +37,6 @@ done
 
 SCRIPT_PATH=$(pwd)
 cd $HOME
-
-# borg expects all paths to be passed in, it won't recurse into folders when using --paths-from-stdin
-# some other option might solve this but I really don't care
-# TODO: instead of cat /tmp/temp_backup.txt, need to recurse into ALL paths if the string is a folder
 
 restic --compression max --repo $SCRIPT_PATH/repo/ --files-from /tmp/temp_backup.txt --verbose backup
 
