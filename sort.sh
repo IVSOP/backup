@@ -4,7 +4,7 @@
 
 for file in files/*.txt
 do
-    if [ "$file" != "example.txt" ]
+    if [ "$file" != "files/example.txt" ]
     then
         echo "Sorting $file"
         sort "$file" > temp.txt && mv temp.txt "$file"
