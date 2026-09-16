@@ -13,3 +13,5 @@ I left an example in there
 `backup.sh <name>` - make an archive with a specific name
 
 `restore.sh <name>` - restore the backup (extract files)
+
+`size.sh <name>` - browse the files in a snapshot by size with gdu (defaults to the latest snapshot)
