@@ -1,10 +1,8 @@
 #!/bin/bash
 
 CUR_PATH=$(pwd)
-cd $HOME
+SNAPSHOT=${1:-latest}
+TARGET=${2:-"$HOME"}
 
-restic --repo $CUR_PATH/repo restore latest
-#--target .
-
-cd $CUR_PATH
+exec restic --repo "$CUR_PATH/repo" restore "$SNAPSHOT" --target "$TARGET"
 
